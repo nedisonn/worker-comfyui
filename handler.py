@@ -474,7 +474,13 @@ def get_image_data(filename, subfolder, image_type):
         )
         return None
 
-
+def get_output_dir():
+    if os.path.isdir('/runpod-volume'):
+        out_dir = '/runpod-volume/output/photos'
+    else:
+        out_dir = os.path.join(os.getcwd(), 'output', 'photos')
+    os.makedirs(out_dir, exist_ok=True)
+    return out_dir
 def handler(job):
     """
     Handles a job using ComfyUI via websockets for status and image retrieval.
@@ -714,7 +720,9 @@ def handler(job):
                         else:
                             # Return as base64 string
                             try:
-                                with open(f"/runpod-volume/output/photos/{filename}", "wb") as photo_output:
+                                output_dir = get_output_dir()
+                                file_path = os.path.join(output_dir, filename)
+                                with open(file_path, "wb") as photo_output:
                                     photo_output.write(image_bytes)
                                 base64_image = base64.b64encode(image_bytes).decode(
                                     "utf-8"
@@ -787,11 +795,13 @@ def handler(job):
                                     )
                     else:
                         try:
+                            output_dir = get_output_dir()
+                            file_path = os.path.join(output_dir, filename)
                             with open(video_info["fullpath"], "rb") as video_file:
                                 video_bytes = video_file.read()
-                                with open(f"/runpod-volume/output/videos/{filename}", "wb") as video_output:
+                                with open(file_path, "wb") as video_output:
                                     video_output.write(video_bytes)
-                            print(f"worker-comfyui - Wrote video bytes to /runpod-volume/output/videos/{filename}")
+                            print(f"worker-comfyui - Wrote video bytes to {file_path}")
                         except Exception as e:
                             error_msg = f"Error saving {filename} to /runpod-volume: {e}"
                             print(f"worker-comfyui - {error_msg}")
