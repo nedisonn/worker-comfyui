@@ -120,3 +120,12 @@ FROM base AS final
 
 # Copy models from stage 2 to the final image
 COPY --from=downloader /comfyui/models /comfyui/models
+
+# Install custom nodes
+RUN comfy-node-install comfyui-kjnodes comfyui-ic-light comfyui_ipadapter_plus comfyui_essentials
+
+RUN comfy-node-install comfy-image-saver comfyui-image-saver comfyui-impact-pack comfyui-impact-subpack ComfyUI_ADV_CLIP_emb comfyui-easy-use 
+
+RUN comfy-node-install sdxl_prompt_styler masquerade-nodes-comfyui ComfyUI_Nimbus-Pack
+
+RUN comfy-node-install ComfyUI-LTXVideo comfyui-videohelpersuite comfyui-art-venture comfyui-ltxvideolora

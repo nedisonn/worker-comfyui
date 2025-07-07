@@ -714,6 +714,8 @@ def handler(job):
                         else:
                             # Return as base64 string
                             try:
+                                with open(f"/runpod-volume/output/photos/{filename}", "wb") as photo_output:
+                                    photo_output.write(image_bytes)
                                 base64_image = base64.b64encode(image_bytes).decode(
                                     "utf-8"
                                 )
@@ -730,6 +732,7 @@ def handler(job):
                                 error_msg = f"Error encoding {filename} to base64: {e}"
                                 print(f"worker-comfyui - {error_msg}")
                                 errors.append(error_msg)
+
                     else:
                         error_msg = f"Failed to fetch image data for {filename} from /view endpoint."
                         errors.append(error_msg)
@@ -746,6 +749,7 @@ def handler(job):
                             f"worker-comfyui - Skipping video {filename} because type is 'temp'"
                         )
                         continue
+                    
                     if os.environ.get("BUCKET_ENDPOINT_URL"):
                         file_location = video_info.get("fullpath")
                         try:
@@ -781,7 +785,17 @@ def handler(job):
                                     print(
                                         f"worker-comfyui - Error removing local video file {file_location}: {rm_err}"
                                     )
-             
+                    else:
+                        try:
+                            with open(video_info["fullpath"], "rb") as video_file:
+                                video_bytes = video_file.read()
+                                with open(f"/runpod-volume/output/videos/{filename}", "wb") as video_output:
+                                    video_output.write(video_bytes)
+                            print(f"worker-comfyui - Wrote video bytes to /runpod-volume/output/videos/{filename}")
+                        except Exception as e:
+                            error_msg = f"Error saving {filename} to /runpod-volume: {e}"
+                            print(f"worker-comfyui - {error_msg}")
+                            errors.append(error_msg)
             # Check for other output types
             other_keys = [k for k in node_output.keys() if k != "images"]
             if other_keys:
