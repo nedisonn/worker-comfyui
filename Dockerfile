@@ -129,3 +129,5 @@ RUN comfy-node-install comfy-image-saver comfyui-image-saver comfyui-impact-pack
 RUN comfy-node-install sdxl_prompt_styler masquerade-nodes-comfyui ComfyUI_Nimbus-Pack
 
 RUN comfy-node-install ComfyUI-LTXVideo comfyui-videohelpersuite comfyui-art-venture comfyui-ltxvideolora
+
+RUN comfy-node-install ComfyUI-WanVideoWrapper
