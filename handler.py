@@ -13,6 +13,7 @@ import uuid
 import tempfile
 import socket
 import traceback
+import datetime
 
 # Time to wait between API check attempts in milliseconds
 COMFY_API_AVAILABLE_INTERVAL_MS = 50
@@ -474,11 +475,11 @@ def get_image_data(filename, subfolder, image_type):
         )
         return None
 
-def get_output_dir():
+def get_output_dir(type="photo"):
     if os.path.isdir('/runpod-volume'):
-        out_dir = '/runpod-volume/output/photos'
+        out_dir = f'/runpod-volume/output/{type}s/{datetime.datetime.now().strftime("%Y%m%d")}/'
     else:
-        out_dir = os.path.join(os.getcwd(), 'output', 'photos')
+        out_dir = os.path.join(os.getcwd(), 'output', f'{type}s', datetime.datetime.now().strftime("%Y%m%d"))
     os.makedirs(out_dir, exist_ok=True)
     return out_dir
 def handler(job):
