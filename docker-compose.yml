@@ -15,5 +15,5 @@ services:
       - "8000:8000"
       - "8188:8188"
     volumes:
-      - ./data/comfyui/output:/comfyui/output
+      - ./data/comfyui/output:/runpod-volume/output
       - ./data/runpod-volume:/runpod-volume

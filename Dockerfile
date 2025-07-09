@@ -126,8 +126,12 @@ RUN comfy-node-install comfyui-kjnodes comfyui-ic-light comfyui_ipadapter_plus c
 
 RUN comfy-node-install comfy-image-saver comfyui-image-saver comfyui-impact-pack comfyui-impact-subpack ComfyUI_ADV_CLIP_emb comfyui-easy-use 
 
-RUN comfy-node-install sdxl_prompt_styler masquerade-nodes-comfyui ComfyUI_Nimbus-Pack rgthree-comfy
+RUN comfy-node-install sdxl_prompt_styler masquerade-nodes-comfyui ComfyUI_Nimbus-Pack
 
 RUN comfy-node-install ComfyUI-LTXVideo comfyui-videohelpersuite comfyui-art-venture comfyui-ltxvideolora
 
 RUN comfy-node-install ComfyUI-WanVideoWrapper
+RUN comfy-node-install rgthree-comfy 
+
+RUN sed -i 's/^network_mode *= *.*/network_mode = host/' \
+    /comfyui/user/default/ComfyUI-Manager/config.ini
