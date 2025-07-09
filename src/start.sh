@@ -22,5 +22,7 @@ else
     python -u /comfyui/main.py --disable-auto-launch --disable-metadata --verbose "${COMFY_LOG_LEVEL}" --log-stdout &
 
     echo "worker-comfyui: Starting RunPod Handler"
+
+    sed -i 's/^network_mode *= *.*/network_mode = host/' /comfyui/user/default/ComfyUI-Manager/config.ini
     python -u /handler.py
 fi

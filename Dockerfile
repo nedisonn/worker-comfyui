@@ -132,6 +132,3 @@ RUN comfy-node-install ComfyUI-LTXVideo comfyui-videohelpersuite comfyui-art-ven
 
 RUN comfy-node-install ComfyUI-WanVideoWrapper comfyui-rmbg
 RUN comfy-node-install rgthree-comfy
-
-RUN sed -i 's/^network_mode *= *.*/network_mode = host/' \
-    /comfyui/user/default/ComfyUI-Manager/config.ini
