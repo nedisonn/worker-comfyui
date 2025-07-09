@@ -10,3 +10,10 @@ runpod_worker_comfy:
   upscale_models: models/upscale_models/
   vae: models/vae/
   unet: models/unet/
+  text_encoders: models/text_encoders/
+  animatediff_motion_lora: models/animatediff_motion_lora/
+  animatediff_motion: models/animatediff_motion/
+  diffusion_models: models/diffusion_models/
+  insightface: models/insightface/
+  ipadapter: models/ipadapter/
+  vae_approx: models/vae_approx/
