@@ -132,4 +132,4 @@ RUN comfy-node-install ComfyUI-LTXVideo comfyui-videohelpersuite comfyui-art-ven
 
 RUN comfy-node-install ComfyUI-WanVideoWrapper comfyui-rmbg comfyui-multigpu comfyui-custom-scripts
 RUN comfy-node-install rgthree-comfy cg-use-everywhere comfyui_ultimatesdupscale
-RUN comfy-node-install ComfyUI-Upscaler-Tensorrt
+RUN comfy-node-install ComfyUI-Upscaler-Tensorrt comfyui_layerstyle ComfyUI-GGUF teacachehunyuanvideo
