@@ -27,6 +27,8 @@ RUN apt-get update && apt-get install -y \
     libpng-dev \
     libxrender1 \
     ffmpeg \
+      libavcodec-dev libavformat-dev libavdevice-dev libavutil-dev \
+      libswscale-dev libavfilter-dev libavresample-dev \
     && ln -sf /usr/bin/python3.10 /usr/bin/python \
     && ln -sf /usr/bin/pip3 /usr/bin/pip
 
@@ -43,7 +45,7 @@ RUN wget -qO- https://astral.sh/uv/install.sh | sh \
 ENV PATH="/opt/venv/bin:${PATH}"
 
 # Install comfy-cli + dependencies needed by it to install ComfyUI
-RUN uv pip install comfy-cli pip setuptools wheel
+RUN uv pip install comfy-cli pip setuptools wheel av
 
 # Install ComfyUI
 RUN /usr/bin/yes | comfy --workspace /comfyui install --version 0.3.43 --cuda-version 12.6 --nvidia
