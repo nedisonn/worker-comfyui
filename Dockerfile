@@ -1,5 +1,5 @@
 # Stage 1: Base image with common dependencies
-FROM nvidia/cuda:12.6.3-cudnn-runtime-ubuntu24.04 AS base
+FROM nvidia/cuda:12.9.1-cudnn-runtime-ubuntu22.04 AS base
 
 # Prevents prompts from packages asking for user input during installation
 ENV DEBIAN_FRONTEND=noninteractive
@@ -26,8 +26,6 @@ RUN apt-get update && apt-get install -y \
     libxext6 \
     libxrender1 \
     ffmpeg \
-    cuda-toolkit-12-1 \
-    cuda-toolkit-12-8 \
     libjpeg-dev \
     libpng-dev \
     && ln -sf /usr/bin/python3.12 /usr/bin/python \
