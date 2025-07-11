@@ -22,6 +22,7 @@ RUN apt-get update && apt-get install -y \
     libxext6 \
     libxrender1 \
     ffmpeg \
+    build-essential \
     && ln -sf /usr/bin/python3.12 /usr/bin/python \
     && ln -sf /usr/bin/pip3 /usr/bin/pip
 
@@ -121,9 +122,6 @@ FROM base AS final
 # Copy models from stage 2 to the final image
 COPY --from=downloader /comfyui/models /comfyui/models
 
-RUN apt-get update \
- && apt-get install -y build-essential \
- && rm -rf /var/lib/apt/lists/*
 # Install custom nodes
 RUN comfy-node-install comfyui-kjnodes comfyui-ic-light comfyui_ipadapter_plus comfyui_essentials
 
