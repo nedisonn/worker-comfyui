@@ -24,6 +24,10 @@ RUN apt-get update && apt-get install -y \
     libxext6 \
     libxrender1 \
     ffmpeg \
+    cuda-toolkit-12-1 \
+    cuda-toolkit-12-8 \
+    libjpeg-dev \
+    libpng-dev \
     && ln -sf /usr/bin/python3.12 /usr/bin/python \
     && ln -sf /usr/bin/pip3 /usr/bin/pip
 
@@ -56,6 +60,8 @@ WORKDIR /
 
 # Install Python runtime dependencies for the handler
 RUN uv pip install runpod requests websocket-client
+RUN pip install --no-cache-dir triton
+RUN pip install --no-cache-dir diffusers transformers
 
 # Add application code and scripts
 ADD src/start.sh handler.py test_input.json ./
