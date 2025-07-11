@@ -13,22 +13,21 @@ ENV CMAKE_BUILD_PARALLEL_LEVEL=8
 # Install Python, git and other necessary tools
 RUN apt-get update && apt-get install -y \
     build-essential \
-    cmake \
-    ninja-build \
-    python3.12 \
-    python3.12-dev \
-    python3.12-venv \
+    python3 \
+    python3-dev \
+    python3-venv \
+    python3-pip \
     git \
     wget \
     libgl1 \
     libglib2.0-0 \
     libsm6 \
     libxext6 \
-    libxrender1 \
-    ffmpeg \
     libjpeg-dev \
     libpng-dev \
-    && ln -sf /usr/bin/python3.12 /usr/bin/python \
+    libxrender1 \
+    ffmpeg \
+    && ln -sf /usr/bin/python3.10 /usr/bin/python \
     && ln -sf /usr/bin/pip3 /usr/bin/pip
 
 # Clean up to reduce image size
