@@ -60,8 +60,8 @@ ADD src/extra_model_paths.yaml ./
 WORKDIR /
 
 # Install Python runtime dependencies for the handler
-RUN uv pip install runpod requests websocket-client  diffusers transformers
-RUN uv pip install --no-cache-dir triton
+RUN uv pip install runpod requests websocket-client diffusers transformers
+RUN uv pip install --no-cache-dir triton sageattention
 # RUN uv pip install --no-cache-dir git+https://github.com/openai/triton.git
 
 # Add application code and scripts
@@ -151,3 +151,8 @@ RUN git clone https://github.com/twri/sdxl_prompt_styler.git custom_nodes/sdxl_p
 RUN git clone https://github.com/sergekatzmann/ComfyUI_Nimbus-Pack.git custom_nodes/ComfyUI_Nimbus-Pack
 RUN git clone https://github.com/Chaoses-Ib/ComfyUI_Ib_CustomNodes.git custom_nodes/ComfyUI_Ib_CustomNodes
 RUN git clone https://github.com/ShmuelRonen/ComfyUI-VideoUpscale_WithModel.git custom_nodes/ComfyUI-VideoUpscale_WithModel
+
+# RUN wget -q --header="Authorization: Bearer ${HUGGINGFACE_ACCESS_TOKEN}" -O models/diffusion_models/Wan2.1_T2V_14B_FusionX_VACE-Q8_0.gguf https://huggingface.co/QuantStack/Wan2.1_T2V_14B_FusionX_VACE-GGUF/resolve/main/Wan2.1_T2V_14B_FusionX_VACE-Q8_0.gguf?download=true; 
+# RUN wget -q --header="Authorization: Bearer ${HUGGINGFACE_ACCESS_TOKEN}" -O models/unet/Wan2.1_T2V_14B_LightX2V_StepCfgDistill_VACE-Q8_0.gguf https://huggingface.co/QuantStack/Wan2.1_T2V_14B_LightX2V_StepCfgDistill_VACE-GGUF/resolve/main/Wan2.1_T2V_14B_LightX2V_StepCfgDistill_VACE-Q8_0.gguf?download=true; 
+# RUN wget -q --header="Authorization: Bearer ${HUGGINGFACE_ACCESS_TOKEN}" -O models/vae/Wan2_1_VAE_bf16.safetensors https://huggingface.co/Kijai/WanVideo_comfy/resolve/main/Wan2_1_VAE_bf16.safetensors?download=true;
+# RUN wget -q --header="Authorization: Bearer ${HUGGINGFACE_ACCESS_TOKEN}" -O models/text_encoders/umt5-xxl-encoder-Q8_0.gguf https://huggingface.co/city96/umt5-xxl-encoder-gguf/resolve/main/umt5-xxl-encoder-Q8_0.gguf?download=true
