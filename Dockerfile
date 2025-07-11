@@ -12,7 +12,9 @@ ENV CMAKE_BUILD_PARALLEL_LEVEL=8
 
 # Install Python, git and other necessary tools
 RUN apt-get update && apt-get install -y \
+    build-essential \
     python3.12 \
+    python3.12-dev \
     python3.12-venv \
     git \
     wget \
@@ -22,7 +24,6 @@ RUN apt-get update && apt-get install -y \
     libxext6 \
     libxrender1 \
     ffmpeg \
-    build-essential \
     && ln -sf /usr/bin/python3.12 /usr/bin/python \
     && ln -sf /usr/bin/pip3 /usr/bin/pip
 
@@ -79,7 +80,7 @@ FROM base AS downloader
 
 ARG HUGGINGFACE_ACCESS_TOKEN
 # Set default model type if none is provided
-ARG MODEL_TYPE=flux1-dev-fp8
+ARG MODEL_TYPE="none"
 
 # Change working directory to ComfyUI
 WORKDIR /comfyui
@@ -123,16 +124,21 @@ FROM base AS final
 COPY --from=downloader /comfyui/models /comfyui/models
 
 # Install custom nodes
-RUN comfy-node-install comfyui-kjnodes comfyui-ic-light comfyui_ipadapter_plus comfyui_essentials
+RUN comfy-node-install comfyui-kjnodes comfyui-ic-light comfyui_ipadapter_plus comfyui_ipadapter_plus_v2 comfyui_essentials
 
 RUN comfy-node-install comfy-image-saver comfyui-image-saver comfyui-impact-pack comfyui-impact-subpack ComfyUI_ADV_CLIP_emb comfyui-easy-use 
 
-RUN comfy-node-install sdxl_prompt_styler masquerade-nodes-comfyui ComfyUI_Nimbus-Pack
+RUN comfy-node-install  comfyui-art-venture masquerade-nodes-comfyui comfyui-jakeupgrade
 
-RUN comfy-node-install ComfyUI-LTXVideo comfyui-videohelpersuite comfyui-art-venture comfyui-ltxvideolora
-
-RUN comfy-node-install ComfyUI-WanVideoWrapper comfyui-rmbg comfyui-multigpu comfyui-custom-scripts
 
 RUN comfy-node-install rgthree-comfy cg-use-everywhere comfyui_ultimatesdupscale ComfyUI-UltimateSDUpscale-GGUF ComfyUI-GGUF
 
-RUN comfy-node-install comfyui_layerstyle ComfyUI-Upscaler-Tensorrt teacachehunyuanvideo ComfyUI-MultiGPU
+RUN comfy-node-install comfyui_layerstyle teacachehunyuanvideo
+
+RUN comfy-node-install ComfyUI-LTXVideo comfyui-videohelpersuite  comfyui-ltxvideolora
+
+RUN comfy-node-install ComfyUI-WanVideoWrapper comfyui-rmbg comfyui-multigpu comfyui-custom-scripts
+
+RUN git clone https://github.com/yuvraj108c/ComfyUI-Upscaler-Tensorrt.git custom_nodes/ComfyUI-Upscaler-Tensorrt
+RUN git clone https://github.com/twri/sdxl_prompt_styler.git custom_nodes/sdxl_prompt_styler
+RUN git clone https://github.com/sergekatzmann/ComfyUI_Nimbus-Pack.git custom_nodes/ComfyUI_Nimbus-Pack

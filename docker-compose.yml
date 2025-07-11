@@ -1,6 +1,9 @@
 services:
   comfyui-worker:
-    image: runpod/worker-comfyui:dev
+    build:
+      context: . 
+      dockerfile: Dockerfile
+    # image: runpod/worker-comfyui:dev
     pull_policy: never
     deploy:
       resources:
