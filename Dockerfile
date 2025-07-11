@@ -138,7 +138,7 @@ RUN comfy-node-install  comfyui-art-venture masquerade-nodes-comfyui comfyui-jak
 
 RUN comfy-node-install rgthree-comfy cg-use-everywhere comfyui_ultimatesdupscale ComfyUI-UltimateSDUpscale-GGUF ComfyUI-GGUF
 
-RUN comfy-node-install comfyui_layerstyle teacachehunyuanvideo
+RUN comfy-node-install comfyui_layerstyle teacachehunyuanvideo comfyui_controlnet_aux
 
 RUN comfy-node-install ComfyUI-LTXVideo comfyui-videohelpersuite  comfyui-ltxvideolora
 
@@ -147,3 +147,5 @@ RUN comfy-node-install ComfyUI-WanVideoWrapper comfyui-rmbg comfyui-multigpu com
 RUN git clone https://github.com/yuvraj108c/ComfyUI-Upscaler-Tensorrt.git custom_nodes/ComfyUI-Upscaler-Tensorrt
 RUN git clone https://github.com/twri/sdxl_prompt_styler.git custom_nodes/sdxl_prompt_styler
 RUN git clone https://github.com/sergekatzmann/ComfyUI_Nimbus-Pack.git custom_nodes/ComfyUI_Nimbus-Pack
+RUN git clone https://github.com/Chaoses-Ib/ComfyUI_Ib_CustomNodes.git custom_nodes/ComfyUI_Ib_CustomNodes
+RUN git clone https://github.com/ShmuelRonen/ComfyUI-VideoUpscale_WithModel.git custom_nodes/ComfyUI-VideoUpscale_WithModel
