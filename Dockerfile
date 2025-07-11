@@ -13,6 +13,8 @@ ENV CMAKE_BUILD_PARALLEL_LEVEL=8
 # Install Python, git and other necessary tools
 RUN apt-get update && apt-get install -y \
     build-essential \
+    cmake \
+    ninja-build \
     python3.12 \
     python3.12-dev \
     python3.12-venv \
@@ -59,9 +61,9 @@ ADD src/extra_model_paths.yaml ./
 WORKDIR /
 
 # Install Python runtime dependencies for the handler
-RUN uv pip install runpod requests websocket-client
-RUN pip install --no-cache-dir triton
-RUN pip install --no-cache-dir diffusers transformers
+RUN uv pip install runpod requests websocket-client  diffusers transformers
+
+RUN uv pip install --no-cache-dir git+https://github.com/openai/triton.git
 
 # Add application code and scripts
 ADD src/start.sh handler.py test_input.json ./
