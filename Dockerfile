@@ -28,7 +28,7 @@ RUN apt-get update && apt-get install -y \
     libxrender1 \
     ffmpeg \
       libavcodec-dev libavformat-dev libavdevice-dev libavutil-dev \
-      libswscale-dev libavfilter-dev libavresample-dev \
+      libswscale-dev libavfilter-dev \
     && ln -sf /usr/bin/python3.10 /usr/bin/python \
     && ln -sf /usr/bin/pip3 /usr/bin/pip
 
