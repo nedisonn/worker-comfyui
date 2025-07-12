@@ -147,6 +147,7 @@ RUN comfy-node-install ComfyUI-LTXVideo comfyui-videohelpersuite  comfyui-ltxvid
 RUN comfy-node-install ComfyUI-WanVideoWrapper comfyui-rmbg comfyui-multigpu comfyui-custom-scripts
 
 RUN git clone https://github.com/yuvraj108c/ComfyUI-Upscaler-Tensorrt.git custom_nodes/ComfyUI-Upscaler-Tensorrt
+RUN pip install -r ./custom_nodes/ComfyUI-Upscaler-Tensorrt/requirements.txt
 RUN git clone https://github.com/twri/sdxl_prompt_styler.git custom_nodes/sdxl_prompt_styler
 RUN git clone https://github.com/sergekatzmann/ComfyUI_Nimbus-Pack.git custom_nodes/ComfyUI_Nimbus-Pack
 RUN git clone https://github.com/Chaoses-Ib/ComfyUI_Ib_CustomNodes.git custom_nodes/ComfyUI_Ib_CustomNodes
