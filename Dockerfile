@@ -11,26 +11,33 @@ ENV PYTHONUNBUFFERED=1
 ENV CMAKE_BUILD_PARALLEL_LEVEL=8
 
 # Install Python, git and other necessary tools
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    python3 \
-    python3-dev \
-    python3-venv \
-    python3-pip \
-    git \
-    wget \
-    libgl1 \
-    libglib2.0-0 \
-    libsm6 \
-    libxext6 \
-    libjpeg-dev \
-    libpng-dev \
-    libxrender1 \
-    ffmpeg \
-    libavcodec-dev libavformat-dev libavdevice-dev libavutil-dev \
-    libswscale-dev libavfilter-dev libavutil58 libavutil57 \
-    && ln -sf /usr/bin/python3.10 /usr/bin/python \
-    && ln -sf /usr/bin/pip3 /usr/bin/pip
+RUN apt-get update \
+ && apt-get install -y \
+      build-essential \
+      python3 \
+      python3-dev \
+      python3-venv \
+      python3-pip \
+      git \
+      wget \
+      libgl1 \
+      libglib2.0-0 \
+      libsm6 \
+      libxext6 \
+      libjpeg-dev \
+      libpng-dev \
+      libxrender1 \
+      ffmpeg \
+      libavcodec-dev \
+      libavformat-dev \
+      libavdevice-dev \
+      libavutil-dev \
+      libswscale-dev \
+      libavfilter-dev \
+      libavutil58 \
+      libavutil57 \
+ && ln -sf /usr/bin/python3.10 /usr/bin/python \
+ && ln -sf /usr/bin/pip3 /usr/bin/pip
 RUN add-apt-repository ppa:savoury1/ffmpeg5
 RUN add-apt-repository ppa:savoury1/ffmpeg6
 RUN apt update
