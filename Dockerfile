@@ -134,7 +134,7 @@ RUN comfy-node-install comfyui-kjnodes comfyui-ic-light comfyui_ipadapter_plus c
 
 RUN comfy-node-install comfy-image-saver comfyui-image-saver comfyui-impact-pack comfyui-impact-subpack ComfyUI_ADV_CLIP_emb comfyui-easy-use 
 
-RUN comfy-node-install  comfyui-art-venture masquerade-nodes-comfyui comfyui-jakeupgrade
+RUN comfy-node-install  comfyui-art-venture masquerade-nodes-comfyui comfyui-jakeupgrade comfyui-florence2
 
 
 RUN comfy-node-install rgthree-comfy cg-use-everywhere comfyui_ultimatesdupscale ComfyUI-UltimateSDUpscale-GGUF ComfyUI-GGUF
