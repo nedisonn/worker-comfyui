@@ -28,10 +28,14 @@ RUN apt-get update && apt-get install -y \
     libxrender1 \
     ffmpeg \
       libavcodec-dev libavformat-dev libavdevice-dev libavutil-dev \
-      libswscale-dev libavfilter-dev \
+      libswscale-dev libavfilter-dev libavutil58 libavutil57 \
+      ibswscale-dev \
     && ln -sf /usr/bin/python3.10 /usr/bin/python \
     && ln -sf /usr/bin/pip3 /usr/bin/pip
-
+RUN add-apt-repository ppa:savoury1/ffmpeg5
+RUN add-apt-repository ppa:savoury1/ffmpeg6
+RUN apt update
+RUN apt install ffmpeg=7:6.*   
 # Clean up to reduce image size
 RUN apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
@@ -45,8 +49,7 @@ RUN wget -qO- https://astral.sh/uv/install.sh | sh \
 ENV PATH="/opt/venv/bin:${PATH}"
 
 # Install comfy-cli + dependencies needed by it to install ComfyUI
-RUN uv pip install comfy-cli pip setuptools wheel av
-
+RUN uv pip install comfy-cli pip setuptools wheel --upgrade av
 # Install ComfyUI
 RUN /usr/bin/yes | comfy --workspace /comfyui install --version 0.3.43 --cuda-version 12.6 --nvidia
 
@@ -62,7 +65,7 @@ WORKDIR /
 # Install Python runtime dependencies for the handler
 RUN uv pip install runpod requests websocket-client diffusers transformers
 RUN uv pip install --no-cache-dir triton sageattention
-# RUN uv pip install --no-cache-dir git+https://github.com/openai/triton.git
+RUN uv pip install --no-cache-dir git+https://github.com/openai/triton.git
 
 # Add application code and scripts
 ADD src/start.sh handler.py test_input.json ./
@@ -153,7 +156,9 @@ RUN git clone https://github.com/sergekatzmann/ComfyUI_Nimbus-Pack.git custom_no
 RUN git clone https://github.com/Chaoses-Ib/ComfyUI_Ib_CustomNodes.git custom_nodes/ComfyUI_Ib_CustomNodes
 RUN git clone https://github.com/ShmuelRonen/ComfyUI-VideoUpscale_WithModel.git custom_nodes/ComfyUI-VideoUpscale_WithModel
 
-# RUN wget -q --header="Authorization: Bearer ${HUGGINGFACE_ACCESS_TOKEN}" -O models/diffusion_models/Wan2.1_T2V_14B_FusionX_VACE-Q8_0.gguf https://huggingface.co/QuantStack/Wan2.1_T2V_14B_FusionX_VACE-GGUF/resolve/main/Wan2.1_T2V_14B_FusionX_VACE-Q8_0.gguf?download=true; 
-# RUN wget -q --header="Authorization: Bearer ${HUGGINGFACE_ACCESS_TOKEN}" -O models/unet/Wan2.1_T2V_14B_LightX2V_StepCfgDistill_VACE-Q8_0.gguf https://huggingface.co/QuantStack/Wan2.1_T2V_14B_LightX2V_StepCfgDistill_VACE-GGUF/resolve/main/Wan2.1_T2V_14B_LightX2V_StepCfgDistill_VACE-Q8_0.gguf?download=true; 
-# RUN wget -q --header="Authorization: Bearer ${HUGGINGFACE_ACCESS_TOKEN}" -O models/vae/Wan2_1_VAE_bf16.safetensors https://huggingface.co/Kijai/WanVideo_comfy/resolve/main/Wan2_1_VAE_bf16.safetensors?download=true;
-# RUN wget -q --header="Authorization: Bearer ${HUGGINGFACE_ACCESS_TOKEN}" -O models/text_encoders/umt5-xxl-encoder-Q8_0.gguf https://huggingface.co/city96/umt5-xxl-encoder-gguf/resolve/main/umt5-xxl-encoder-Q8_0.gguf?download=true
+RUN wget -q --header="Authorization: Bearer ${HUGGINGFACE_ACCESS_TOKEN}" -O models/diffusion_models/Wan2.1_T2V_14B_FusionX_VACE-Q8_0.gguf https://huggingface.co/QuantStack/Wan2.1_T2V_14B_FusionX_VACE-GGUF/resolve/main/Wan2.1_T2V_14B_FusionX_VACE-Q8_0.gguf?download=true; 
+RUN wget -q --header="Authorization: Bearer ${HUGGINGFACE_ACCESS_TOKEN}" -O models/diffusion_models/ltx-video-2b-v0.9.safetensors https://huggingface.co/ali-vilab/VACE-LTX-Video-0.9/resolve/main/ltx-video-2b-v0.9.safetensors?download=true;
+RUN wget -q --header="Authorization: Bearer ${HUGGINGFACE_ACCESS_TOKEN}" -O models/diffusion_models/Wan2.1_14B_VACE_F16.gguf https://huggingface.co/QuantStack/Wan2.1_14B_VACE-GGUF/resolve/main/Wan2.1_14B_VACE-F16.gguf?download=true; 
+RUN wget -q --header="Authorization: Bearer ${HUGGINGFACE_ACCESS_TOKEN}" -O models/unet/Wan2.1_T2V_14B_LightX2V_StepCfgDistill_VACE-Q8_0.gguf https://huggingface.co/QuantStack/Wan2.1_T2V_14B_LightX2V_StepCfgDistill_VACE-GGUF/resolve/main/Wan2.1_T2V_14B_LightX2V_StepCfgDistill_VACE-Q8_0.gguf?download=true; 
+RUN wget -q --header="Authorization: Bearer ${HUGGINGFACE_ACCESS_TOKEN}" -O models/vae/Wan2_1_VAE_bf16.safetensors https://huggingface.co/Kijai/WanVideo_comfy/resolve/main/Wan2_1_VAE_bf16.safetensors?download=true;
+RUN wget -q --header="Authorization: Bearer ${HUGGINGFACE_ACCESS_TOKEN}" -O models/text_encoders/umt5-xxl-encoder-Q8_0.gguf https://huggingface.co/city96/umt5-xxl-encoder-gguf/resolve/main/umt5-xxl-encoder-Q8_0.gguf?download=true
