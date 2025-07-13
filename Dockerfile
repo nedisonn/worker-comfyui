@@ -19,6 +19,15 @@ RUN apt-get update && apt-get install -y \
     libswscale-dev libavfilter-dev \
   && ln -sf /usr/bin/python3 /usr/bin/python \
   && ln -sf /usr/bin/pip3 /usr/bin/pip
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends \
+       software-properties-common \
+       apt-transport-https \
+  && add-apt-repository ppa:savoury1/ffmpeg5 \
+  && apt-get update \
+  && apt-get install -y --no-install-recommends \
+       ffmpeg \
+  && rm -rf /var/lib/apt/lists/*
 RUN add-apt-repository ppa:savoury1/ffmpeg5
 RUN add-apt-repository ppa:savoury1/ffmpeg6
 RUN apt update
