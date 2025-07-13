@@ -20,18 +20,12 @@ RUN apt-get update && apt-get install -y \
   && ln -sf /usr/bin/python3 /usr/bin/python \
   && ln -sf /usr/bin/pip3 /usr/bin/pip
 RUN apt-get update \
-  && apt-get install -y --no-install-recommends \
-       software-properties-common \
-       apt-transport-https \
-  && add-apt-repository ppa:savoury1/ffmpeg5 \
-  && apt-get update \
-  && apt-get install -y --no-install-recommends \
-       ffmpeg \
-  && rm -rf /var/lib/apt/lists/*
-RUN add-apt-repository ppa:savoury1/ffmpeg5
-RUN add-apt-repository ppa:savoury1/ffmpeg6
-RUN apt update
-RUN apt install ffmpeg=7:6.*   
+ && apt-get install -y --no-install-recommends software-properties-common apt-transport-https \
+ && add-apt-repository -y ppa:savoury1/ffmpeg5 \
+ && add-apt-repository -y ppa:savoury1/ffmpeg6 \
+ && apt-get update \
+ && apt-get install -y --no-install-recommends ffmpeg=7:6.* \
+ && rm -rf /var/lib/apt/lists/* 
 # Clean up to reduce image size
 RUN apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
