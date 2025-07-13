@@ -151,3 +151,4 @@ RUN git clone https://github.com/twri/sdxl_prompt_styler.git custom_nodes/sdxl_p
 RUN git clone https://github.com/sergekatzmann/ComfyUI_Nimbus-Pack.git custom_nodes/ComfyUI_Nimbus-Pack
 RUN git clone https://github.com/Chaoses-Ib/ComfyUI_Ib_CustomNodes.git custom_nodes/ComfyUI_Ib_CustomNodes
 RUN git clone https://github.com/ShmuelRonen/ComfyUI-VideoUpscale_WithModel.git custom_nodes/ComfyUI-VideoUpscale_WithModel
+RUN git clone https://github.com/JPS-GER/ComfyUI_JPS-Nodes.git custom_nodes/ComfyUI-JPS-Nodes
