@@ -139,9 +139,9 @@ RUN comfy-node-install  comfyui-art-venture masquerade-nodes-comfyui comfyui-jak
 
 RUN comfy-node-install rgthree-comfy cg-use-everywhere comfyui_ultimatesdupscale ComfyUI-UltimateSDUpscale-GGUF ComfyUI-GGUF
 
-RUN comfy-node-install comfyui_layerstyle teacachehunyuanvideo comfyui_controlnet_aux
+RUN comfy-node-install comfyui_layerstyle teacachehunyuanvideo comfyui_controlnet_aux comfyui-frame-interpolation
 
-RUN comfy-node-install ComfyUI-LTXVideo comfyui-videohelpersuite  comfyui-ltxvideolora
+RUN comfy-node-install ComfyUI-LTXVideo comfyui-videohelpersuite  comfyui-ltxvideolora 
 
 RUN comfy-node-install ComfyUI-WanVideoWrapper comfyui-rmbg comfyui-multigpu comfyui-custom-scripts
 
