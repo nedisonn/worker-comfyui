@@ -17,13 +17,10 @@ RUN apt-get update \
       git wget libgl1 libglib2.0-0 libsm6 libxext6 \
       libjpeg-dev libpng-dev libxrender1 \
       software-properties-common apt-transport-https \
- && add-apt-repository -y universe \
- && add-apt-repository -y ppa:savoury1/ffmpeg5 \
- && add-apt-repository -y ppa:savoury1/ffmpeg6 \
  && apt-get update \
  && apt-get install -y --no-install-recommends \
       ffmpeg libavcodec-dev libavformat-dev libavdevice-dev libavutil-dev \
-      libswscale-dev libavfilter-dev libsndio7.0 \
+      libswscale-dev libavfilter-dev \
  && ln -sf /usr/bin/python3 /usr/bin/python \
  && ln -sf /usr/bin/pip3 /usr/bin/pip \
  && apt-get autoremove -y \
