@@ -10,22 +10,24 @@ ENV PYTHONUNBUFFERED=1
 # Speed up some cmake builds
 ENV CMAKE_BUILD_PARALLEL_LEVEL=8
 
-# Install Python, git and other necessary tools
-RUN apt-get update && apt-get install -y \
-    build-essential python3 python3-dev python3-venv python3-pip \
-    git wget libgl1 libglib2.0-0 libsm6 libxext6 \
-    libjpeg-dev libpng-dev libxrender1 \
-    ffmpeg libavcodec-dev libavformat-dev libavdevice-dev libavutil-dev \
-    libswscale-dev libavfilter-dev \
-  && ln -sf /usr/bin/python3 /usr/bin/python \
-  && ln -sf /usr/bin/pip3 /usr/bin/pip
+# Consolidated APT install block
 RUN apt-get update \
- && apt-get install -y --no-install-recommends software-properties-common apt-transport-https \
+ && apt-get install -y --no-install-recommends \
+      build-essential python3 python3-dev python3-venv python3-pip \
+      git wget libgl1 libglib2.0-0 libsm6 libxext6 \
+      libjpeg-dev libpng-dev libxrender1 \
+      software-properties-common apt-transport-https \
  && add-apt-repository -y universe \
  && add-apt-repository -y ppa:savoury1/ffmpeg5 \
  && add-apt-repository -y ppa:savoury1/ffmpeg6 \
  && apt-get update \
- && apt-get install -y --no-install-recommends ffmpeg libsndio7.0 \
+ && apt-get install -y --no-install-recommends \
+      ffmpeg libavcodec-dev libavformat-dev libavdevice-dev libavutil-dev \
+      libswscale-dev libavfilter-dev libsndio7.0 \
+ && ln -sf /usr/bin/python3 /usr/bin/python \
+ && ln -sf /usr/bin/pip3 /usr/bin/pip \
+ && apt-get autoremove -y \
+ && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 # Clean up to reduce image size
 RUN apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
