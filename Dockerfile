@@ -131,7 +131,7 @@ COPY --from=downloader /comfyui/models /comfyui/models
 # Install custom nodes
 RUN comfy-node-install comfyui-kjnodes comfyui-ic-light comfyui_ipadapter_plus comfyui_ipadapter_plus_v2 comfyui_essentials
 
-RUN comfy-node-install comfy-image-saver comfyui-image-saver comfyui-impact-pack comfyui-impact-subpack ComfyUI_ADV_CLIP_emb comfyui-easy-use 
+RUN comfy-node-install comfy-image-saver comfyui-image-saver alexopus/ComfyUI-Image-Saver comfyui-impact-pack comfyui-impact-subpack ComfyUI_ADV_CLIP_emb comfyui-easy-use 
 
 RUN comfy-node-install  comfyui-art-venture masquerade-nodes-comfyui comfyui-jakeupgrade comfyui-florence2
 
@@ -151,3 +151,6 @@ RUN git clone https://github.com/sergekatzmann/ComfyUI_Nimbus-Pack.git custom_no
 RUN git clone https://github.com/Chaoses-Ib/ComfyUI_Ib_CustomNodes.git custom_nodes/ComfyUI_Ib_CustomNodes
 RUN git clone https://github.com/ShmuelRonen/ComfyUI-VideoUpscale_WithModel.git custom_nodes/ComfyUI-VideoUpscale_WithModel
 RUN git clone https://github.com/JPS-GER/ComfyUI_JPS-Nodes.git custom_nodes/ComfyUI-JPS-Nodes
+
+RUN git clone https://github.com/USER/ComfyUI-CR-Module-Pipe.git /comfyui/custom_nodes/ComfyUI-CR-Module-Pipe \
+ && pip install -r /comfyui/custom_nodes/ComfyUI-CR-Module-Pipe/requirements.txt
