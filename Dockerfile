@@ -30,7 +30,7 @@ RUN add-apt-repository universe \
  && apt-get update \
  && apt-get install -y ffmpeg \
  && rm -rf /var/lib/apt/lists/*
-RUN sudo apt-get autoremove -y && sudo apt-get clean -y && rm -rf /var/lib/apt/lists/*
+RUN apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 # Install uv (latest) using official installer and create isolated venv
 RUN wget -qO- https://astral.sh/uv/install.sh | sh \
     && ln -s /root/.local/bin/uv /usr/local/bin/uv \
