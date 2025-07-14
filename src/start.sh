@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+export COMFYUI_MANAGER_NETWORK_MODE=offline
 # Use libtcmalloc for better memory management
 TCMALLOC="$(ldconfig -p | grep -Po "libtcmalloc.so.\d" | head -n 1)"
 export LD_PRELOAD="${TCMALLOC}"

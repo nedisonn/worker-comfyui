@@ -26,8 +26,8 @@ RUN apt-get update \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 # Clean up to reduce image size
+RUN apt-get update && apt-get install -y libavutil58 libavcodec58 ffmpeg
 RUN apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
-
 # Install uv (latest) using official installer and create isolated venv
 RUN wget -qO- https://astral.sh/uv/install.sh | sh \
     && ln -s /root/.local/bin/uv /usr/local/bin/uv \
@@ -75,6 +75,7 @@ RUN chmod +x /usr/local/bin/comfy-manager-set-mode
 ENV COMFYUI_MODE=worker
 ENV COMFYUI_MANAGER_HOST=comfy-manager
 ENV COMFYUI_MANAGER_PORT=8188
+ENV COMFYUI_MANAGER_NETWORK_MODE=offline
 # Set the default command to run when starting the container
 CMD ["/start.sh"]
 
