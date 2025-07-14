@@ -26,7 +26,10 @@ RUN apt-get update \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 # Clean up to reduce image size
-RUN sudo apt-get update && sudo apt-get install -y libavutil58 libavcodec58 ffmpeg
+RUN add-apt-repository universe \
+ && apt-get update \
+ && apt-get install -y ffmpeg \
+ && rm -rf /var/lib/apt/lists/*
 RUN sudo apt-get autoremove -y && sudo apt-get clean -y && rm -rf /var/lib/apt/lists/*
 # Install uv (latest) using official installer and create isolated venv
 RUN wget -qO- https://astral.sh/uv/install.sh | sh \
