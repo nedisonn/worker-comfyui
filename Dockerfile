@@ -71,6 +71,10 @@ ENV PIP_NO_INPUT=1
 COPY scripts/comfy-manager-set-mode.sh /usr/local/bin/comfy-manager-set-mode
 RUN chmod +x /usr/local/bin/comfy-manager-set-mode
 
+
+ENV COMFYUI_MODE=worker
+ENV COMFYUI_MANAGER_HOST=comfy-manager
+ENV COMFYUI_MANAGER_PORT=8188
 # Set the default command to run when starting the container
 CMD ["/start.sh"]
 
