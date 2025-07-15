@@ -142,7 +142,7 @@ RUN if [ "$MODEL_TYPE" = "flux1-dev-fp8" ]; then \
 # Install custom nodes
 RUN comfy-node-install comfyui-kjnodes comfyui-ic-light comfyui_ipadapter_plus comfyui_ipadapter_plus_v2 comfyui_essentials
 
-RUN comfy-node-install comfy-image-saver comfyui-image-saver alexopus/ComfyUI-Image-Saver comfyui-impact-pack comfyui-impact-subpack ComfyUI_ADV_CLIP_emb comfyui-easy-use 
+RUN comfy-node-install comfy-image-saver comfyui-image-saver comfyui-impact-pack comfyui-impact-subpack ComfyUI_ADV_CLIP_emb comfyui-easy-use 
 
 RUN comfy-node-install comfyui-art-venture masquerade-nodes-comfyui comfyui-jakeupgrade comfyui-florence2
 
