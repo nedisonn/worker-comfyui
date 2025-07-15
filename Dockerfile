@@ -56,7 +56,7 @@ WORKDIR /
 
 # Install Python runtime dependencies for the handler
 RUN uv pip install runpod requests websocket-client diffusers transformers
-RUN uv pip install --no-cache-dir triton sageattention
+RUN uv pip install --no-cache-dir sageattention
 RUN uv pip install --no-cache-dir git+https://github.com/openai/triton.git
 
 # Add application code and scripts
