@@ -19,7 +19,7 @@ RUN apt-get update \
       software-properties-common apt-transport-https \
  && apt-get update \
  && apt-get install -y --no-install-recommends \
-      ffmpeg libavcodec-dev libavformat-dev libavdevice-dev libavutil-dev libswscale-dev libavfilter-dev \
+      libavcodec-dev libavformat-dev libavdevice-dev libavutil-dev libswscale-dev libavfilter-dev \
  && ln -sf /usr/bin/python3 /usr/bin/python \
  && ln -sf /usr/bin/pip3 /usr/bin/pip \
  && apt-get autoremove -y \
