@@ -134,9 +134,9 @@ RUN if [ "$MODEL_TYPE" = "flux1-dev-fp8" ]; then \
 #     fi
 # RUN wget -nc -q --header="Authorization: Bearer ${HUGGINGFACE_ACCESS_TOKEN}" -O models/diffusion_models/ltx-video-2b-v0.9.safetensors https://huggingface.co/ali-vilab/VACE-LTX-Video-0.9/resolve/main/ltx-video-2b-v0.9.safetensors?download=true;
 # RUN wget -nc -q --header="Authorization: Bearer ${HUGGINGFACE_ACCESS_TOKEN}" -O models/diffusion_models/Wan2.1_14B_VACE_F16.gguf https://huggingface.co/QuantStack/Wan2.1_14B_VACE-GGUF/resolve/main/Wan2.1_14B_VACE-F16.gguf?download=true; 
-RUN wget -nc -q --header="Authorization: Bearer ${HUGGINGFACE_ACCESS_TOKEN}" -O models/unet/Wan2.1_T2V_14B_LightX2V_StepCfgDistill_VACE-Q8_0.gguf https://huggingface.co/QuantStack/Wan2.1_T2V_14B_LightX2V_StepCfgDistill_VACE-GGUF/resolve/main/Wan2.1_T2V_14B_LightX2V_StepCfgDistill_VACE-Q8_0.gguf?download=true; 
+# RUN wget -nc -q --header="Authorization: Bearer ${HUGGINGFACE_ACCESS_TOKEN}" -O models/unet/Wan2.1_T2V_14B_LightX2V_StepCfgDistill_VACE-Q8_0.gguf https://huggingface.co/QuantStack/Wan2.1_T2V_14B_LightX2V_StepCfgDistill_VACE-GGUF/resolve/main/Wan2.1_T2V_14B_LightX2V_StepCfgDistill_VACE-Q8_0.gguf?download=true; 
 # RUN wget -nc -q --header="Authorization: Bearer ${HUGGINGFACE_ACCESS_TOKEN}" -O models/vae/Wan2_1_VAE_bf16.safetensors https://huggingface.co/Kijai/WanVideo_comfy/resolve/main/Wan2_1_VAE_bf16.safetensors?download=true;
-RUN wget -nc -q --header="Authorization: Bearer ${HUGGINGFACE_ACCESS_TOKEN}" -O models/text_encoders/umt5-xxl-encoder-Q8_0.gguf https://huggingface.co/city96/umt5-xxl-encoder-gguf/resolve/main/umt5-xxl-encoder-Q8_0.gguf?download=true
+# RUN wget -nc -q --header="Authorization: Bearer ${HUGGINGFACE_ACCESS_TOKEN}" -O models/text_encoders/umt5-xxl-encoder-Q8_0.gguf https://huggingface.co/city96/umt5-xxl-encoder-gguf/resolve/main/umt5-xxl-encoder-Q8_0.gguf?download=true
 
 
 # Install custom nodes
