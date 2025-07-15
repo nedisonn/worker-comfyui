@@ -1,10 +1,11 @@
+version: '3.8'
+
 services:
   comfyui-worker:
     build:
-      context: . 
+      context: .
       dockerfile: Dockerfile
-    # image: runpod/worker-comfyui:dev
-    pull_policy: never
+    image: nedisonn/nv-comfyui-worker:latest
     deploy:
       resources:
         reservations:
@@ -14,9 +15,12 @@ services:
               capabilities: [gpu]
     environment:
       - SERVE_API_LOCALLY=true
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
     ports:
       - "8000:8000"
       - "8188:8188"
     volumes:
       - ./data/comfyui/output:/runpod-volume/output
       - ./data/runpod-volume:/runpod-volume
+    restart: unless-stopped
