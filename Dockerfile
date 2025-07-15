@@ -168,8 +168,11 @@ RUN git clone https://github.com/Chaoses-Ib/ComfyUI_Ib_CustomNodes.git custom_no
 RUN git clone https://github.com/ShmuelRonen/ComfyUI-VideoUpscale_WithModel.git custom_nodes/ComfyUI-VideoUpscale_WithModel
 RUN git clone https://github.com/JPS-GER/ComfyUI_JPS-Nodes.git custom_nodes/ComfyUI-JPS-Nodes
 
-RUN git clone https://github.com/USER/ComfyUI-CR-Module-Pipe.git /comfyui/custom_nodes/ComfyUI-CR-Module-Pipe \
- && pip install -r /comfyui/custom_nodes/ComfyUI-CR-Module-Pipe/requirements.txt
+# RUN git clone https://github.com/USER/ComfyUI-CR-Module-Pipe.git /comfyui/custom_nodes/ComfyUI-CR-Module-Pipe \
+#  && pip install -r /comfyui/custom_nodes/ComfyUI-CR-Module-Pipe/requirements.txt
+
+RUN git clone https://github.com/jaimitoes/ComfyUI_Wan2_1_lora_trainer.git custom_nodes/ComfyUI-Wan2_1_lora_trainer \
+ && pip install -r custom_nodes/ComfyUI-Wan2_1_lora_trainer/requirements.txt
 
  # Stage 3: Final image 
 FROM base AS final
