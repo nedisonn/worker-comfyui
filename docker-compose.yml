@@ -23,4 +23,3 @@ services:
     volumes:
       - ./data/comfyui/output:/runpod-volume/output
       - ./data/runpod-volume:/runpod-volume
-    restart: unless-stopped
