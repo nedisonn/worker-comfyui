@@ -138,6 +138,11 @@ RUN if [ "$MODEL_TYPE" = "flux1-dev-fp8" ]; then \
 # RUN wget -nc -q --header="Authorization: Bearer ${HUGGINGFACE_ACCESS_TOKEN}" -O models/vae/Wan2_1_VAE_bf16.safetensors https://huggingface.co/Kijai/WanVideo_comfy/resolve/main/Wan2_1_VAE_bf16.safetensors?download=true;
 # RUN wget -nc -q --header="Authorization: Bearer ${HUGGINGFACE_ACCESS_TOKEN}" -O models/text_encoders/umt5-xxl-encoder-Q8_0.gguf https://huggingface.co/city96/umt5-xxl-encoder-gguf/resolve/main/umt5-xxl-encoder-Q8_0.gguf?download=true
 
+ # Stage 3: Final image 
+FROM base AS final
+
+# Copy models from stage 2 to the final image
+COPY --from=downloader /comfyui/models /comfyui/models
 
 # Install custom nodes
 RUN comfy-node-install comfyui-kjnodes comfyui-ic-light comfyui_ipadapter_plus comfyui_ipadapter_plus_v2 comfyui_essentials
@@ -173,9 +178,3 @@ RUN git clone https://github.com/JPS-GER/ComfyUI_JPS-Nodes.git custom_nodes/Comf
 
 RUN git clone https://github.com/jaimitoes/ComfyUI_Wan2_1_lora_trainer.git custom_nodes/ComfyUI-Wan2_1_lora_trainer \
  && pip install -r custom_nodes/ComfyUI-Wan2_1_lora_trainer/requirements.txt
-
- # Stage 3: Final image 
-FROM base AS final
-
-# Copy models from stage 2 to the final image
-COPY --from=downloader /comfyui/models /comfyui/models
