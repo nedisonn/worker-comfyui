@@ -122,9 +122,9 @@ RUN if [ "$MODEL_TYPE" = "flux1-dev-fp8" ]; then \
       wget -nc -O models/checkpoints/flux1-dev-fp8.safetensors https://huggingface.co/Comfy-Org/flux1-dev/resolve/main/flux1-dev-fp8.safetensors; \
     fi
 
-RUN wget -nv --header="Authorization: Bearer ${HUGGINGFACE_ACCESS_TOKEN}" -O models/ultralytics/segm/Anzhc_Breasts_Seg_v1_1024m.pt https://huggingface.co/Anzhc/Anzhcs_YOLOs/resolve/main/Anzhc%20Breasts%20Seg%20v1%201024m.pt; 
+RUN wget -nv -O models/ultralytics/segm/Anzhc_Breasts_Seg_v1_1024m.pt https://huggingface.co/Anzhc/Anzhcs_YOLOs/resolve/main/Anzhc%20Breasts%20Seg%20v1%201024m.pt; 
 
-RUN wget -nv --header="Authorization: Bearer ${HUGGINGFACE_ACCESS_TOKEN}" -O models/ultralytics/segm/fasterrcnn_foot.pth https://huggingface.co/tonyassi/foot-detection/resolve/main/fasterrcnn_foot.pth;
+RUN wget -nv -O models/ultralytics/segm/fasterrcnn_foot.pth https://huggingface.co/tonyassi/foot-detection/resolve/main/fasterrcnn_foot.pth;
 
 # RUN set -eux; \
 #     MODEL_URL="https://huggingface.co/QuantStack/Wan2.1_T2V_14B_FusionX_VACE-GGUF/resolve/main/Wan2.1_T2V_14B_FusionX_VACE-Q8_0.gguf?download=true"; \
