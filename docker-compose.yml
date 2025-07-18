@@ -24,4 +24,3 @@ services:
       - ./data/comfyui/output:/runpod-volume/output
       - ./data/runpod-volume:/runpod-volume
       - ./data/runpod-volume/models/ultralytics:/comfyui/models/ultralytics
-      - ./custom_models/ultralytics:/comfyui/models/ultralytics
