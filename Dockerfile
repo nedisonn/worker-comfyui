@@ -179,7 +179,7 @@ RUN git clone https://github.com/JPS-GER/ComfyUI_JPS-Nodes.git custom_nodes/Comf
 RUN git clone https://github.com/jaimitoes/ComfyUI_Wan2_1_lora_trainer.git custom_nodes/ComfyUI-Wan2_1_lora_trainer \
  && pip install -r custom_nodes/ComfyUI-Wan2_1_lora_trainer/requirements.txt
 
-COPY /runpod-volume/models/ultralytics /comfyui/models/ultralytics 
+# COPY /runpod-volume/models/ultralytics /comfyui/models/ultralytics 
 
 #  # Torna o usuário root (se necessário)
 # USER root
