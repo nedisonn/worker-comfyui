@@ -15,10 +15,8 @@ RUN apt-get update \
  && apt-get install -y --no-install-recommends \
       build-essential python3 python3-dev python3-venv python3-pip \
       git wget libgl1 libglib2.0-0 libsm6 libxext6 \
-      libjpeg-dev libpng-dev libxrender1 \
+      libjpeg-dev libpng-dev libxrender1 curl \
       software-properties-common apt-transport-https \
- && apt-get update \
- && apt-get install -y --no-install-recommends \
       libavcodec-dev libavformat-dev libavdevice-dev libavutil-dev libswscale-dev libavfilter-dev \
  && ln -sf /usr/bin/python3 /usr/bin/python \
  && ln -sf /usr/bin/pip3 /usr/bin/pip \
@@ -123,13 +121,9 @@ RUN if [ "$MODEL_TYPE" = "flux1-dev" ]; then \
 RUN if [ "$MODEL_TYPE" = "flux1-dev-fp8" ]; then \
       wget -nc -q -O models/checkpoints/flux1-dev-fp8.safetensors https://huggingface.co/Comfy-Org/flux1-dev/resolve/main/flux1-dev-fp8.safetensors; \
     fi
+RUN wget -nc -q --header="Authorization: Bearer ${HUGGINGFACE_ACCESS_TOKEN}" -O models/ultralytics/segm/Anzhc_Breasts_Seg_v1_1024m.pt https://huggingface.co/Anzhc/Anzhcs_YOLOs/resolve/main/Anzhc%20Breasts%20Seg%20v1%201024m.pt; 
 
-RUN curl -L \
-     -o /comfyui/models/ultralytics/segm/Anzhc_Breasts_Seg_v1_1024m.pt \
-     "https://huggingface.co/Anzhc/Anzhcs_YOLOs/resolve/main/Anzhc%20Breasts%20Seg%20v1%201024m.pt"
-RUN curl -L \
-     -o /comfyui/models/ultralytics/segm/fasterrcnn_foot.pth \
-     "https://huggingface.co/tonyassi/foot-detection/resolve/main/fasterrcnn_foot.pth"
+RUN wget -nc -q --header="Authorization: Bearer ${HUGGINGFACE_ACCESS_TOKEN}" -O models/ultralytics/segm/fasterrcnn_foot.pth https://huggingface.co/tonyassi/foot-detection/resolve/main/fasterrcnn_foot.pth;
 
 # RUN set -eux; \
 #     MODEL_URL="https://huggingface.co/QuantStack/Wan2.1_T2V_14B_FusionX_VACE-GGUF/resolve/main/Wan2.1_T2V_14B_FusionX_VACE-Q8_0.gguf?download=true"; \
