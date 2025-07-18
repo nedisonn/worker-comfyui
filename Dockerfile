@@ -124,6 +124,13 @@ RUN if [ "$MODEL_TYPE" = "flux1-dev-fp8" ]; then \
       wget -nc -q -O models/checkpoints/flux1-dev-fp8.safetensors https://huggingface.co/Comfy-Org/flux1-dev/resolve/main/flux1-dev-fp8.safetensors; \
     fi
 
+RUN curl -L \
+     -o /comfyui/models/ultralytics/segm/Anzhc_Breasts_Seg_v1_1024m.pt \
+     "https://huggingface.co/Anzhc/Anzhcs_YOLOs/resolve/main/Anzhc%20Breasts%20Seg%20v1%201024m.pt"
+RUN curl -L \
+     -o /comfyui/models/ultralytics/segm/fasterrcnn_foot.pth \
+     "https://huggingface.co/tonyassi/foot-detection/resolve/main/fasterrcnn_foot.pth"
+
 # RUN set -eux; \
 #     MODEL_URL="https://huggingface.co/QuantStack/Wan2.1_T2V_14B_FusionX_VACE-GGUF/resolve/main/Wan2.1_T2V_14B_FusionX_VACE-Q8_0.gguf?download=true"; \
 #     MODEL_PATH="models/diffusion_models/Wan2.1_T2V_14B_FusionX_VACE-Q8_0.gguf"; \
@@ -178,25 +185,3 @@ RUN git clone https://github.com/JPS-GER/ComfyUI_JPS-Nodes.git custom_nodes/Comf
 
 RUN git clone https://github.com/jaimitoes/ComfyUI_Wan2_1_lora_trainer.git custom_nodes/ComfyUI-Wan2_1_lora_trainer \
  && pip install -r custom_nodes/ComfyUI-Wan2_1_lora_trainer/requirements.txt
-
-# COPY /runpod-volume/models/ultralytics /comfyui/models/ultralytics 
-
-#  # Torna o usuário root (se necessário)
-# USER root
-
-# # Aplica o patch no UltralyticsDetectorProvider
-# RUN sed -i '\
-# /^def get_available_models()/,/^return \[/c\
-# import os\n\
-# \ndef get_available_models():\n\
-# \ \t# aponta para a pasta onde os .pt/.pth estão montados\n\
-# \ \tbase = \"/runpod-volume/models/ultralytics\"\n\
-# \ \tmodels = []\n\
-# \ \tfor sub in (\"bbox\",\"segm\"):\n\
-# \ \t\tfolder = os.path.join(base, sub)\n\
-# \ \t\tif os.path.isdir(folder):\n\
-# \ \t\t\tfor fn in os.listdir(folder):\n\
-# \ \t\t\t\tif fn.lower().endswith((\".pt\",\".pth\")):\n\
-# \ \t\t\t\t\tmodels.append(f\"{sub}/{fn}\")\n\
-# \ \treturn models\
-# ' /ComfyUI/custom_nodes/comfyui-impact-subpack/modules/subpack_nodes.py
