@@ -180,3 +180,6 @@ RUN git clone https://github.com/JPS-GER/ComfyUI_JPS-Nodes.git custom_nodes/Comf
 
 RUN git clone https://github.com/jaimitoes/ComfyUI_Wan2_1_lora_trainer.git custom_nodes/ComfyUI-Wan2_1_lora_trainer \
  && pip install -r custom_nodes/ComfyUI-Wan2_1_lora_trainer/requirements.txt
+
+RUN git clone https://github.com/evanspearman/ComfyMath.git custom_nodes/ComfyMath \
+ && pip install -r custom_nodes/ComfyMath/requirements.txt
