@@ -146,6 +146,7 @@ FROM base AS final
 # Copy models from stage 2 to the final image
 COPY --from=downloader /comfyui/models /comfyui/models
 
+
 # Install custom nodes
 RUN comfy-node-install comfyui-kjnodes comfyui-ic-light comfyui_ipadapter_plus comfyui_ipadapter_plus_v2 comfyui_essentials
 
@@ -166,6 +167,8 @@ RUN comfy-node-install ComfyUI-WanVideoWrapper comfyui-rmbg comfyui-multigpu com
 # RUN pip install -r ./custom_nodes/ComfyUI-FramePackWrapper_Plus/requirements.txt
 
 RUN comfy-node-install ComfyUI-FramePackWrapper_PlusOne
+
+WORKDIR /comfyui
 
 RUN git clone https://github.com/yuvraj108c/ComfyUI-Upscaler-Tensorrt.git custom_nodes/ComfyUI-Upscaler-Tensorrt
 RUN pip install -r ./custom_nodes/ComfyUI-Upscaler-Tensorrt/requirements.txt
