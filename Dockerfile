@@ -85,7 +85,7 @@ FROM base AS downloader
 
 ARG HUGGINGFACE_ACCESS_TOKEN
 # Set default model type if none is provided
-ARG MODEL_TYPE="flux1-dev-fp8"
+ARG MODEL_TYPE="flux1-kontext-fp8"
 
 # Change working directory to ComfyUI
 WORKDIR /comfyui
@@ -120,6 +120,11 @@ RUN if [ "$MODEL_TYPE" = "flux1-dev" ]; then \
 
 RUN if [ "$MODEL_TYPE" = "flux1-dev-fp8" ]; then \
       wget -nc -O models/checkpoints/flux1-dev-fp8.safetensors https://huggingface.co/Comfy-Org/flux1-dev/resolve/main/flux1-dev-fp8.safetensors; \
+    fi
+RUN if [ "$MODEL_TYPE" = "flux1-kontext-fp8" ]; then \
+      wget -nc -O models/checkpoints/flux1-dev-kontext_fp8_scaled.safetensors https://huggingface.co/Comfy-Org/flux1-kontext-dev_ComfyUI/resolve/main/split_files/diffusion_models/flux1-dev-kontext_fp8_scaled.safetensors \
+      wget -nc -O models/text_encoders/t5xxl_fp8_e4m3fn_scaled.safetensors https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/t5xxl_fp8_e4m3fn_scaled.safetensors \
+      wget -nc -O models/vae/ae.safetensors https://huggingface.co/Comfy-Org/Lumina_Image_2.0_Repackaged/resolve/main/split_files/vae/ae.safetensors
     fi
 
 RUN wget -nv -O models/ultralytics/segm/Anzhc_Breasts_Seg_v1_1024m.pt https://huggingface.co/Anzhc/Anzhcs_YOLOs/resolve/main/Anzhc%20Breasts%20Seg%20v1%201024m.pt; 
@@ -186,3 +191,12 @@ RUN git clone https://github.com/jaimitoes/ComfyUI_Wan2_1_lora_trainer.git custo
 
 RUN git clone https://github.com/evanspearman/ComfyMath.git custom_nodes/ComfyMath \
  && pip install -r custom_nodes/ComfyMath/requirements.txt
+
+RUN git clone https://github.com/stavsap/comfyui-kokoro.git custom_nodes/comfyui-kokoro \
+ && pip install -r custom_nodes/comfyui-kokoro/requirements.txt
+
+RUN git clone https://github.com/liusida/ComfyUI-Login.git custom_node/ComfyUI-Login \ 
+ && pip install -r custom_nodes/ComfyUI-Login/requirements.txt
+
+RUN git clone https://github.com/jax-explorer/ComfyUI-UNO custom_node/ComfyUI-UNO \ 
+ && pip install -r custom_nodes/ComfyUI-UNO/requirements.txt
