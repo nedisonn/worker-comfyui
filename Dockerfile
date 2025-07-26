@@ -85,7 +85,7 @@ FROM base AS downloader
 
 ARG HUGGINGFACE_ACCESS_TOKEN
 # Set default model type if none is provided
-ARG MODEL_TYPE="flux1-kontext-fp8"
+ARG MODEL_TYPE="flux1-dev-fp8"
 
 # Change working directory to ComfyUI
 WORKDIR /comfyui
@@ -122,6 +122,7 @@ RUN if [ "$MODEL_TYPE" = "flux1-dev-fp8" ]; then \
       wget -nc -O models/checkpoints/flux1-dev-fp8.safetensors https://huggingface.co/Comfy-Org/flux1-dev/resolve/main/flux1-dev-fp8.safetensors; \
     fi
 
+ARG MODEL_TYPE="flux1-kontext-fp8"
 RUN if [ "$MODEL_TYPE" = "flux1-kontext-fp8" ]; then \
       wget -nc -O models/checkpoints/flux1-dev-kontext_fp8_scaled.safetensors https://huggingface.co/Comfy-Org/flux1-kontext-dev_ComfyUI/resolve/main/split_files/diffusion_models/flux1-dev-kontext_fp8_scaled.safetensors && \
       wget -nc -O models/text_encoders/t5xxl_fp8_e4m3fn_scaled.safetensors https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/t5xxl_fp8_e4m3fn_scaled.safetensors && \
