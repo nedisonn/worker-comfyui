@@ -196,8 +196,8 @@ RUN git clone https://github.com/evanspearman/ComfyMath.git custom_nodes/ComfyMa
 RUN git clone https://github.com/stavsap/comfyui-kokoro.git custom_nodes/comfyui-kokoro \
  && pip install -r custom_nodes/comfyui-kokoro/requirements.txt
 
-RUN git clone https://github.com/liusida/ComfyUI-Login.git custom_nodes/ComfyUI-Login \ 
- && pip install -r custom_nodes/ComfyUI-Login/requirements.txt
+# RUN git clone https://github.com/liusida/ComfyUI-Login.git custom_nodes/ComfyUI-Login \ 
+#  && pip install -r custom_nodes/ComfyUI-Login/requirements.txt
 
 RUN git clone https://github.com/jax-explorer/ComfyUI-UNO custom_nodes/ComfyUI-UNO \ 
  && pip install -r custom_nodes/ComfyUI-UNO/requirements.txt
