@@ -202,3 +202,5 @@ RUN git clone https://github.com/stavsap/comfyui-kokoro.git custom_nodes/comfyui
 
 RUN git clone https://github.com/jax-explorer/ComfyUI-UNO custom_nodes/ComfyUI-UNO \ 
  && pip install -r custom_nodes/ComfyUI-UNO/requirements.txt
+
+RUN git clone https://github.com/ssitu/ComfyUI_UltimateSDUpscale --recursive custom_nodes/ComfyUI_UltimateSDUpscale
